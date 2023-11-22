@@ -1,7 +1,7 @@
 package dev.radom.constructmanage.dataInit;
 
-import dev.radom.constructmanage.api.construction.JobRepository;
-import dev.radom.constructmanage.api.construction.ProjectRepository;
+import dev.radom.constructmanage.api.construction.repository.JobRepository;
+import dev.radom.constructmanage.api.construction.repository.ProjectRepository;
 import dev.radom.constructmanage.api.construction.model.Job;
 import dev.radom.constructmanage.api.construction.model.Project;
 import dev.radom.constructmanage.utils.GenerateCode;

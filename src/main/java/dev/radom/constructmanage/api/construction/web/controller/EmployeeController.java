@@ -1,7 +1,7 @@
-package dev.radom.constructmanage.api.construction.web;
+package dev.radom.constructmanage.api.construction.web.controller;
 
 import dev.radom.constructmanage.api.construction.service.EmployeeService;
-import dev.radom.constructmanage.api.construction.web.dto.AddEmployeeDto;
+import dev.radom.constructmanage.api.construction.web.dto.AddNewEmployeeDto;
 import dev.radom.constructmanage.api.construction.web.dto.EmployeeDto;
 import dev.radom.constructmanage.api.construction.web.dto.UpdateEmployeeDto;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,8 @@ public class EmployeeController {
 
 
     @PostMapping
-    public void insertEmployee(@RequestBody AddEmployeeDto addEmployeeDto) {
-        employeeService.insertEmployee(addEmployeeDto);
+    public void insertEmployee(@RequestBody AddNewEmployeeDto addNewEmployeeDto) {
+        employeeService.insertEmployee(addNewEmployeeDto);
     }
 
     @GetMapping("/{uuid}")

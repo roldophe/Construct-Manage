@@ -1,4 +1,4 @@
-package dev.radom.constructmanage.api.construction.web;
+package dev.radom.constructmanage.api.construction.web.controller;
 
 import dev.radom.constructmanage.api.construction.service.ProjectService;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewProjectDto;

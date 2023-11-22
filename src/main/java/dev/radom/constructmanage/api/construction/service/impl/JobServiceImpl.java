@@ -1,11 +1,12 @@
-package dev.radom.constructmanage.api.construction.service;
+package dev.radom.constructmanage.api.construction.service.impl;
 
 import dev.radom.constructmanage.api.construction.model.Job;
-import dev.radom.constructmanage.api.construction.JobMapper;
-import dev.radom.constructmanage.api.construction.JobRepository;
-import dev.radom.constructmanage.api.construction.web.dto.InsertNewJobDto;
+import dev.radom.constructmanage.api.construction.mapper.JobMapper;
+import dev.radom.constructmanage.api.construction.repository.JobRepository;
+import dev.radom.constructmanage.api.construction.service.JobService;
+import dev.radom.constructmanage.api.construction.web.dto.AddNewJobDto;
 import dev.radom.constructmanage.api.construction.web.dto.JobDto;
-import dev.radom.constructmanage.api.construction.web.dto.UpdateJob;
+import dev.radom.constructmanage.api.construction.web.dto.UpdateJobDto;
 import dev.radom.constructmanage.utils.GenerateCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,21 +23,21 @@ public class JobServiceImpl implements JobService {
     private final JobMapper jobMapper;
 
     @Override
-    public void insertJob(InsertNewJobDto insertNewJobDto) {
-        Boolean existsByDesc = jobRepository.existsByDescription(insertNewJobDto.description());
+    public void insertJob(AddNewJobDto addNewJobDto) {
+        Boolean existsByDesc = jobRepository.existsByDescription(addNewJobDto.description());
         if (existsByDesc) throw new ResponseStatusException(HttpStatus.CONFLICT, "Description already exist!!");
-        Job job = jobMapper.fromCreateJobDto(insertNewJobDto);
+        Job job = jobMapper.fromCreateJobDto(addNewJobDto);
         job.setCode("JOB-" + GenerateCode.generateCode());
         job.setLastUpdate(LocalDateTime.now());
         jobRepository.save(job);
     }
 
     @Override
-    public void updateJob(String code, UpdateJob updateJob) {
+    public void updateJob(String code, UpdateJobDto updateJobDto) {
         Job job = jobRepository.findJobByCode(code).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found!!")
         );
-        jobMapper.fromUpdateJobDto(job, updateJob);
+        jobMapper.fromUpdateJobDto(job, updateJobDto);
         job.setLastUpdate(LocalDateTime.now());
         jobRepository.save(job);
     }

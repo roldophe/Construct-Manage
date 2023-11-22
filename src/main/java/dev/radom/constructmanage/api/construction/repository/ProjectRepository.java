@@ -1,4 +1,4 @@
-package dev.radom.constructmanage.api.construction;
+package dev.radom.constructmanage.api.construction.repository;
 
 import dev.radom.constructmanage.api.construction.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,8 +1,9 @@
-package dev.radom.constructmanage.api.construction.service;
+package dev.radom.constructmanage.api.construction.service.impl;
 
-import dev.radom.constructmanage.api.construction.ProjectMapper;
-import dev.radom.constructmanage.api.construction.ProjectRepository;
+import dev.radom.constructmanage.api.construction.mapper.ProjectMapper;
+import dev.radom.constructmanage.api.construction.repository.ProjectRepository;
 import dev.radom.constructmanage.api.construction.model.Project;
+import dev.radom.constructmanage.api.construction.service.ProjectService;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewProjectDto;
 import dev.radom.constructmanage.api.construction.web.dto.ProjectDto;
 import dev.radom.constructmanage.api.construction.web.dto.UpdateProjectDto;

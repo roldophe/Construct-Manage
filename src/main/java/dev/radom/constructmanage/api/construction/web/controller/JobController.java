@@ -1,9 +1,9 @@
-package dev.radom.constructmanage.api.construction.web;
+package dev.radom.constructmanage.api.construction.web.controller;
 
 import dev.radom.constructmanage.api.construction.service.JobService;
-import dev.radom.constructmanage.api.construction.web.dto.InsertNewJobDto;
+import dev.radom.constructmanage.api.construction.web.dto.AddNewJobDto;
 import dev.radom.constructmanage.api.construction.web.dto.JobDto;
-import dev.radom.constructmanage.api.construction.web.dto.UpdateJob;
+import dev.radom.constructmanage.api.construction.web.dto.UpdateJobDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +26,8 @@ public class JobController {
     }
 
     @PostMapping()
-    public void insertNewJob(@RequestBody InsertNewJobDto insertNewJobDto) {
-        jobService.insertJob(insertNewJobDto);
+    public void insertNewJob(@RequestBody AddNewJobDto addNewJobDto) {
+        jobService.insertJob(addNewJobDto);
     }
 
     @DeleteMapping("/{code}")
@@ -36,8 +36,8 @@ public class JobController {
     }
 
     @PutMapping("/{code}")
-    public void updateJobByCode(@PathVariable String code, @RequestBody UpdateJob updateJob) {
-        jobService.updateJob(code, updateJob);
+    public void updateJobByCode(@PathVariable String code, @RequestBody UpdateJobDto updateJobDto) {
+        jobService.updateJob(code, updateJobDto);
     }
 
 }

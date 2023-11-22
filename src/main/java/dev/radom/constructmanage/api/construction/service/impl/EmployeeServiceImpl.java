@@ -1,9 +1,10 @@
-package dev.radom.constructmanage.api.construction.service;
+package dev.radom.constructmanage.api.construction.service.impl;
 
-import dev.radom.constructmanage.api.construction.EmployeeMapper;
-import dev.radom.constructmanage.api.construction.EmployeeRepository;
+import dev.radom.constructmanage.api.construction.mapper.EmployeeMapper;
+import dev.radom.constructmanage.api.construction.repository.EmployeeRepository;
 import dev.radom.constructmanage.api.construction.model.Employee;
-import dev.radom.constructmanage.api.construction.web.dto.AddEmployeeDto;
+import dev.radom.constructmanage.api.construction.service.EmployeeService;
+import dev.radom.constructmanage.api.construction.web.dto.AddNewEmployeeDto;
 import dev.radom.constructmanage.api.construction.web.dto.EmployeeDto;
 import dev.radom.constructmanage.api.construction.web.dto.UpdateEmployeeDto;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +25,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeMapper employeeMapper;
 
     @Override
-    public void insertEmployee(AddEmployeeDto addEmployeeDto) {
+    public void insertEmployee(AddNewEmployeeDto addNewEmployeeDto) {
         //log.info("Employee: {}",addEmployeeDto);
-        Boolean existsEmployee = employeeRepository.existsByEmailAndFirstNameAndLastName(addEmployeeDto.email(), addEmployeeDto.firstName(), addEmployeeDto.lastName());
-        Boolean existsEmployeeByEmail = employeeRepository.existsEmployeesByEmail(addEmployeeDto.email());
+        Boolean existsEmployee = employeeRepository.existsByEmailAndFirstNameAndLastName(addNewEmployeeDto.email(), addNewEmployeeDto.firstName(), addNewEmployeeDto.lastName());
+        Boolean existsEmployeeByEmail = employeeRepository.existsEmployeesByEmail(addNewEmployeeDto.email());
         if (existsEmployee) throw new ResponseStatusException(HttpStatus.CONFLICT, "Employee already exist!!");
         if (existsEmployeeByEmail) throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exist!!");
 
-        Employee employee = employeeMapper.fromAddEmployeeDto(addEmployeeDto);
+        Employee employee = employeeMapper.fromAddEmployeeDto(addNewEmployeeDto);
         employee.setHireDate(LocalDate.now());
         employee.setUuid(UUID.randomUUID().toString());
 

@@ -3,6 +3,7 @@ package dev.radom.constructmanage.api.construction.web.controller;
 import dev.radom.constructmanage.api.construction.service.OrganizationService;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewOrganizationDto;
 import dev.radom.constructmanage.api.construction.web.dto.OrganizationDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class OrganizationController {
     }
 
     @PostMapping
-    public void addNewOrganization(@RequestBody AddNewOrganizationDto addNewOrganizationDto) {
+    public void addNewOrganization(@RequestBody @Valid AddNewOrganizationDto addNewOrganizationDto) {
         organizationService.addNewOrganization(addNewOrganizationDto);
     }
 

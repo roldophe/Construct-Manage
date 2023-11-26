@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -43,6 +44,6 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee")
     private List<Assignment> assignments;
-    @OneToMany(mappedBy = "employee")
-    private List<Service> services;
+    @ManyToMany(mappedBy = "employees")
+    private Set<Organization> organizations;
 }

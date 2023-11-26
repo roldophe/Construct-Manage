@@ -1,10 +1,9 @@
 package dev.radom.constructmanage.api.construction.service;
 
-import dev.radom.constructmanage.api.construction.model.Organization;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewOrganizationDto;
 import dev.radom.constructmanage.api.construction.web.dto.OrganizationDto;
 
-import java.util.List;
+import java.util.List ;
 
 public interface OrganizationService {
     void addNewOrganization(AddNewOrganizationDto addNewOrganizationDto);

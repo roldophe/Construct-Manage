@@ -4,6 +4,7 @@ import dev.radom.constructmanage.api.construction.service.EmployeeService;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewEmployeeDto;
 import dev.radom.constructmanage.api.construction.web.dto.EmployeeDto;
 import dev.radom.constructmanage.api.construction.web.dto.UpdateEmployeeDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class EmployeeController {
 
 
     @PostMapping
-    public void insertEmployee(@RequestBody AddNewEmployeeDto addNewEmployeeDto) {
+    public void insertEmployee(@RequestBody @Valid AddNewEmployeeDto addNewEmployeeDto) {
         employeeService.insertEmployee(addNewEmployeeDto);
     }
 
@@ -32,7 +33,7 @@ public class EmployeeController {
     }
 
     @PatchMapping("/{uuid}")
-    public void updateEmployeeByUuid(@PathVariable String uuid, UpdateEmployeeDto updateEmployeeDto) {
+    public void updateEmployeeByUuid(@PathVariable String uuid,@RequestBody @Valid UpdateEmployeeDto updateEmployeeDto) {
         employeeService.updateEmployeeByUuid(uuid, updateEmployeeDto);
     }
 

@@ -4,6 +4,7 @@ import dev.radom.constructmanage.api.construction.service.ProjectService;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewProjectDto;
 import dev.radom.constructmanage.api.construction.web.dto.ProjectDto;
 import dev.radom.constructmanage.api.construction.web.dto.UpdateProjectDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class ProjectController {
     }
 
     @PostMapping()
-    public void insertNewProject(@RequestBody AddNewProjectDto addNewProjectDto) {
+    public void insertNewProject(@RequestBody @Valid AddNewProjectDto addNewProjectDto) {
         projectService.insertProject(addNewProjectDto);
     }
 
@@ -36,7 +37,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{projCode}")
-    public void updateJobByCode(@PathVariable String projCode, @RequestBody UpdateProjectDto updateNewProject) {
+    public void updateJobByCode(@PathVariable String projCode, @RequestBody @Valid UpdateProjectDto updateNewProject) {
         projectService.updateProjectByCode(projCode, updateNewProject);
     }
 }

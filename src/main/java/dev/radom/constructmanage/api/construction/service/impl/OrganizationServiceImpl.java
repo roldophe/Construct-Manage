@@ -8,6 +8,7 @@ import dev.radom.constructmanage.api.construction.repository.OrganizationReposit
 import dev.radom.constructmanage.api.construction.service.OrganizationService;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewOrganizationDto;
 import dev.radom.constructmanage.api.construction.web.dto.OrganizationDto;
+import dev.radom.constructmanage.api.construction.web.dto.UpdateOrganizationDto;
 import dev.radom.constructmanage.utils.GenerateCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,10 +57,23 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
+    public void updateOrganizationByCode(String code, UpdateOrganizationDto updateOrganizationDto) {
+        Organization organization = organizationRepository.findOrganizationByCode(code)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found!!"));
+        Set<Employee> employees = new HashSet<>();
+        updateOrganizationDto.employeeUUIDs().forEach(empUUID -> {
+            Employee employee = employeeRepository.findByUuid(empUUID)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            employees.add(employee);
+        });
+        organization.setEmployees(employees);
+        organizationRepository.save(organization);
+    }
+
+    @Override
     public OrganizationDto findOrganizationByCode(String code) {
         Organization organization = organizationRepository.findOrganizationByCode(code)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found!!"));
-
         return organizationMapper.INSTANCE.toOrganizationDto(organization);
     }
 

@@ -14,6 +14,7 @@ import java.util.List;
 public interface EmployeeMapper {
     @Mapping(source = "jobCode",target = "job.code")
     Employee fromAddEmployeeDto(AddNewEmployeeDto addNewEmployeeDto);
+    @Mapping(source = "jobCode",target = "job.code")
     void fromUpdateEmployEDto(@MappingTarget Employee employee, UpdateEmployeeDto updateEmployeeDto);
     List<EmployeeDto> toEmployeeDtoList(List<Employee> employees);
     @Mapping(source = "job.code",target = "jobCode")

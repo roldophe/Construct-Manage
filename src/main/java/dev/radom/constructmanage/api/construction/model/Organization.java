@@ -18,13 +18,13 @@ public class Organization {
     private String name;
 
     @Column(nullable = false, length = 100)
-    private String address;
+    private String orgAddress;
 
     @Column(nullable = false, length = 15)
     private String contactNumber;
 
-    @ManyToMany()
-    @JoinTable(name = "services",
+    @ManyToMany(fetch = FetchType.EAGER) // To define a many-to-many unidirectional association
+    @JoinTable(name = "service",
             joinColumns = @JoinColumn(name = "org_code", referencedColumnName = "code"),
             inverseJoinColumns = @JoinColumn(name = "emp_id", referencedColumnName = "id"))
     private Set<Employee> employees;

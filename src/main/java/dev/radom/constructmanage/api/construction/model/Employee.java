@@ -2,10 +2,13 @@ package dev.radom.constructmanage.api.construction.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -36,14 +39,12 @@ public class Employee {
     private String email;
 
     @Column(nullable = false, length = 100)
-    private String address;
+    private String empAddress;
 
     @ManyToOne
-    @JoinColumn(name = "JOB_CODE")
+    @JoinColumn(name = "job_code")
     private Job job;
 
     @OneToMany(mappedBy = "employee")
     private List<Assignment> assignments;
-    @ManyToMany(mappedBy = "employees")
-    private Set<Organization> organizations;
 }

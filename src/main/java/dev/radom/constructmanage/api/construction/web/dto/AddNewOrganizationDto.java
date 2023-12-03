@@ -4,6 +4,8 @@ import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.Set;
+
 public record AddNewOrganizationDto(@Nullable
                                     @NotBlank
                                     @Size(min = 5, max = 100)
@@ -11,9 +13,10 @@ public record AddNewOrganizationDto(@Nullable
                                     @Nullable
                                     @NotBlank
                                     @Size(min = 5, max = 100)
-                                    String address,
+                                    String orgAddress,
                                     @Nullable
                                     @NotBlank
                                     @Size(min = 5, max = 15)
-                                    String contactNumber) {
+                                    String contactNumber,
+                                    Set<String> employeeUUIDs) {
 }

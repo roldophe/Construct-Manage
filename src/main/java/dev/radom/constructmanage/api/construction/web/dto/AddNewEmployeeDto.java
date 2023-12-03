@@ -7,11 +7,11 @@ import java.time.LocalDate;
 
 public record AddNewEmployeeDto(@Nullable
                                 @NotBlank
-                                @Size(min = 5, max = 25)
+                                @Size(min = 3, max = 25)
                                 String firstName,
                                 @Nullable
                                 @NotBlank
-                                @Size(min = 5, max = 25)
+                                @Size(min = 3, max = 25)
                                 String lastName,
                                 @NotNull
                                 @Past
@@ -28,7 +28,7 @@ public record AddNewEmployeeDto(@Nullable
                                 @Nullable
                                 @NotBlank
                                 @Size(min = 5, max = 200)
-                                String address,
+                                String empAddress,
                                 @Nullable
                                 @NotBlank
                                 @Size(min = 6, max = 25)

@@ -9,6 +9,6 @@ public record EmployeeDto(String uuid,
                           LocalDate hireDate,
                           String email,
                           String contact,
-                          String address,
+                          String empAddress,
                           String jobCode) {
 }

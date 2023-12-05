@@ -1,5 +1,12 @@
 package dev.radom.constructmanage.api.construction.web.dto;
 
-public record AddNewJobDto(String description,
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+public record AddNewJobDto(@NotNull
+                           @NotBlank
+                           String description,
+                           @Positive
                            Float chargeHour) {
 }

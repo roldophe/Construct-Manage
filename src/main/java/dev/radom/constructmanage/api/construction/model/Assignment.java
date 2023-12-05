@@ -22,7 +22,7 @@ public class Assignment {
     private LocalDate date;
 
     private Float hours;
-    private Double chargeHour;
+    private Float chargeHour;
     private Double charge;
 
     @ManyToOne
@@ -32,4 +32,5 @@ public class Assignment {
     @ManyToOne
     @JoinColumn(name = "EMP_ID")
     private Employee employee;
+
 }

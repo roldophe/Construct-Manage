@@ -40,6 +40,7 @@ public class DataInit {
 //        createAndSaveProject("Amber Wave", new BigDecimal("4500.0"));
 //        createAndSaveProject("Rolling Tide", new BigDecimal("6800.0"));
 //        createAndSaveProject("Star flight", new BigDecimal("3500.0"));
+    //-------------------FOR USERS---------------------//
 
     }
 

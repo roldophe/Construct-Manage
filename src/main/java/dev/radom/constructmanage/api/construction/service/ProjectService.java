@@ -1,6 +1,9 @@
 package dev.radom.constructmanage.api.construction.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import dev.radom.constructmanage.api.construction.model.Project;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewProjectDto;
+import dev.radom.constructmanage.api.construction.web.dto.ProjectAssignmentDTO;
 import dev.radom.constructmanage.api.construction.web.dto.ProjectDto;
 import dev.radom.constructmanage.api.construction.web.dto.UpdateProjectDto;
 
@@ -16,4 +19,7 @@ public interface ProjectService {
     ProjectDto findProjectByCode(String projCode);
 
     void deleteProjectByCode(String projCode);
+
+    List<ProjectAssignmentDTO> getProjectsByEmployeeUuid(String uuid);
+    List<ProjectAssignmentDTO> getProjectsDetails();
 }

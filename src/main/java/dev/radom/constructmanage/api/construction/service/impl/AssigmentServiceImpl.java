@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +28,10 @@ public class AssigmentServiceImpl implements AssignmentService {
     public void createNewAssignment(AddNewAssignmentDto addNewAssignmentDto) {
         Employee employee = employeeRepository.findByUuid(addNewAssignmentDto.empUUID())
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Employee does not exist!!"));
+
+        if (assignmentRepository.existsByProjectCodeAndEmployeeId(addNewAssignmentDto.projCode(), employee.getId())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Assignment already exists for the project and employee!");
+        }
         Assignment assignment = assignmentMapper.fromAddNewAssignment(addNewAssignmentDto);
         assignment.setUuid(UUID.randomUUID().toString());
         assignment.setDate(LocalDate.now());

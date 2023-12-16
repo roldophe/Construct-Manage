@@ -9,10 +9,10 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "projects")
+//@Entity
+//@Table(name = "projects")
 public class Project {
-    @Id
+//    @Id
     private String code;
     private String name;
     private BigDecimal budget;

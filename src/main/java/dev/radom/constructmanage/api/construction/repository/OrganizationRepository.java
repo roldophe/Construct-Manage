@@ -7,8 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface OrganizationRepository extends JpaRepository<Organization, String> {
-    @EntityGraph(attributePaths = "employees")
-    Optional<Organization> findOrganizationByCode(String code);
-    Boolean existsByName(String name);
+public interface OrganizationRepository {
+//     extends JpaRepository<Organization, String>
+//    @EntityGraph(attributePaths = "employees")
+//    Optional<Organization> findOrganizationByCode(String code);
+//    Boolean existsByName(String name);
 }

@@ -10,16 +10,16 @@ import dev.radom.constructmanage.api.construction.web.dto.UpdateProjectDto;
 import java.util.List;
 
 public interface ProjectService {
-    void insertProject(AddNewProjectDto addNewProjectDto);
-
-    void updateProjectByCode(String projCode, UpdateProjectDto updateProjectDto);
-
-    List<ProjectDto> findAllProjects();
-
-    ProjectDto findProjectByCode(String projCode);
-
-    void deleteProjectByCode(String projCode);
-
-    List<ProjectAssignmentDTO> getProjectsByEmployeeUuid(String uuid);
-    List<ProjectAssignmentDTO> getProjectsDetails();
+//    void insertProject(AddNewProjectDto addNewProjectDto);
+//
+//    void updateProjectByCode(String projCode, UpdateProjectDto updateProjectDto);
+//
+//    List<ProjectDto> findAllProjects();
+//
+//    ProjectDto findProjectByCode(String projCode);
+//
+//    void deleteProjectByCode(String projCode);
+//
+//    List<ProjectAssignmentDTO> getProjectsByEmployeeUuid(String uuid);
+//    List<ProjectAssignmentDTO> getProjectsDetails();
 }

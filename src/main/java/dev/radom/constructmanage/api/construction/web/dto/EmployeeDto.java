@@ -10,5 +10,7 @@ public record EmployeeDto(String uuid,
                           String email,
                           String contact,
                           String empAddress,
-                          String jobCode) {
+                          String imageUrl,
+                          String jobCode,
+                          String jobDescription) {
 }

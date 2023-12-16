@@ -29,8 +29,9 @@ public record AddNewEmployeeDto(@Nullable
                                 @NotBlank
                                 @Size(min = 5, max = 200)
                                 String empAddress,
+                                String imageUrl,
                                 @Nullable
                                 @NotBlank
                                 @Size(min = 6, max = 25)
-                                String jobCode) {
+                                String jobDescription) {
 }

@@ -8,11 +8,11 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "assignments")
+//@Entity
+//@Table(name = "assignments")
 public class Assignment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -29,8 +29,8 @@ public class Assignment {
     @JoinColumn(name = "PROJ_CODE")
     private Project project;
 
-    @ManyToOne
-    @JoinColumn(name = "EMP_ID")
-    private Employee employee;
+//    @ManyToOne
+//    @JoinColumn(name = "EMP_ID")
+//    private Employee employee;
 
 }

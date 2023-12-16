@@ -1,8 +1,11 @@
 package dev.radom.constructmanage.exception;
 
+import dev.radom.constructmanage.base.BaseError;
 import dev.radom.constructmanage.base.FieldError;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -57,5 +60,16 @@ public class ValidationException {
         //errorDto.put("detail", ex.getMessage());
         errorDto.put("timestamp", LocalDateTime.now());
         return errorDto;
+    }
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    public ResponseEntity<?> handleResponseStatus(HttpMediaTypeNotSupportedException ex) {
+
+        var baseError = BaseError.builder().message("Something went wrong!")
+                .status(false)
+                .code(415)
+                .timestamp(LocalDateTime.now())
+                .errors(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(baseError, ex.getStatusCode());
     }
 }

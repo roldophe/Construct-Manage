@@ -1,6 +1,8 @@
 package dev.radom.constructmanage.api.construction.web.controller;
 
+import dev.radom.constructmanage.api.construction.service.AssignmentService;
 import dev.radom.constructmanage.api.construction.service.ProjectService;
+import dev.radom.constructmanage.api.construction.web.dto.AssignmentDetailsDto;
 import dev.radom.constructmanage.api.construction.web.dto.ProjectAssignmentDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +17,18 @@ import java.util.List;
 @RequestMapping("api/v1/details")
 public class ConstructionController {
 private final ProjectService projectService;
-    @GetMapping("/projects/{uuid}")
-    public List<ProjectAssignmentDTO> getProjectsByEmployeeUuid(@PathVariable String uuid) {
-        return projectService.getProjectsByEmployeeUuid(uuid);
-    }
-    @GetMapping("/projects")
-    public List<ProjectAssignmentDTO> getProjectsDetails() {
-        return projectService.getProjectsDetails();
-    }
+private final AssignmentService assignmentService;
+//    @GetMapping("/projects/{uuid}")
+//    public List<ProjectAssignmentDTO> getProjectsByEmployeeUuid(@PathVariable String uuid) {
+//        return projectService.getProjectsByEmployeeUuid(uuid);
+//    }
+//    @GetMapping("/projects")
+//    public List<ProjectAssignmentDTO> getProjectsDetails() {
+//        return projectService.getProjectsDetails();
+//    }
+//    @GetMapping("/assignments")
+//    public List<AssignmentDetailsDto> getAssignmentDetails(){
+//        return assignmentService.findAllAssignmentDetails();
+//    }
 
 }

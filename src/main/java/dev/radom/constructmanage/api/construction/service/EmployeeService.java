@@ -7,9 +7,10 @@ import dev.radom.constructmanage.api.construction.web.dto.UpdateEmployeeDto;
 import java.util.List;
 
 public interface EmployeeService {
-    void insertEmployee(AddNewEmployeeDto addNewEmployeeDto);
-    void updateEmployeeByUuid(String uuid, UpdateEmployeeDto updateEmployeeDto);
-    List<EmployeeDto> getAllEmployees();
-    EmployeeDto getEmployeeByUuid(String uuid);
-    void deleteEmployeeByUuid(String uuid);
+//    void insertEmployee(AddNewEmployeeDto addNewEmployeeDto);
+//    void updateEmployeeByUuid(String uuid, UpdateEmployeeDto updateEmployeeDto);
+//    void updateEmployeeAllByUuid(String uuid, AddNewEmployeeDto updateEmployeeDto);
+//    List<EmployeeDto> getAllEmployees();
+//    EmployeeDto getEmployeeByUuid(String uuid);
+//    void deleteEmployeeByUuid(String uuid);
 }

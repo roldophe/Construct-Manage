@@ -10,14 +10,14 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "jobs")
+//@Entity
+//@Table(name = "jobs")
 public class Job {
-    @Id
+//    @Id
     private String code;
     private String description;
     private Float chargeHour;
     private LocalDateTime lastUpdate;
-    @OneToMany(mappedBy = "job")
-    private List<Employee> employees ;
+//    @OneToMany(mappedBy = "job")
+//    private List<Employee> employees ;
 }

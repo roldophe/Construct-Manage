@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class DataInit {
 
-    private final JobRepository jobRepository;
-    private final ProjectRepository projectRepository;
+//    private final JobRepository jobRepository;
+//    private final ProjectRepository projectRepository;
 
     @PostConstruct
     private void init() {
@@ -43,21 +43,21 @@ public class DataInit {
     //-------------------FOR USERS---------------------//
 
     }
-
-    private void createAndSaveJob(String description, Float chargeHour) {
-        Job job = new Job();
-        job.setCode("JOB-" + GenerateCode.generateCode());
-        job.setDescription(description);
-        job.setChargeHour(chargeHour);
-        job.setLastUpdate(LocalDateTime.now());
-        jobRepository.save(job);
-    }
-
-    private void createAndSaveProject(String name, BigDecimal budget) {
-        Project project = new Project();
-        project.setCode("PROJ-" + GenerateCode.generateCode());
-        project.setName(name);
-        project.setBudget(budget);
-        projectRepository.save(project);
-    }
+//
+//    private void createAndSaveJob(String description, Float chargeHour) {
+//        Job job = new Job();
+//        job.setCode("JOB-" + GenerateCode.generateCode());
+//        job.setDescription(description);
+//        job.setChargeHour(chargeHour);
+//        job.setLastUpdate(LocalDateTime.now());
+//        jobRepository.save(job);
+//    }
+//
+//    private void createAndSaveProject(String name, BigDecimal budget) {
+//        Project project = new Project();
+//        project.setCode("PROJ-" + GenerateCode.generateCode());
+//        project.setName(name);
+//        project.setBudget(budget);
+//        projectRepository.save(project);
+//    }
 }

@@ -14,30 +14,30 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/organizations")
 public class OrganizationController {
-    private final OrganizationService organizationService;
-
-    @GetMapping
-    public List<OrganizationDto> getAllOrganizations() {
-        return organizationService.findAllOrganization();
-    }
-
-    @PostMapping
-    public void addNewOrganization(@RequestBody @Valid AddNewOrganizationDto addNewOrganizationDto) {
-        organizationService.addNewOrganization(addNewOrganizationDto);
-    }
-
-    @GetMapping("/{code}")
-    public OrganizationDto getOrganizationByCode(@PathVariable String code) {
-        return organizationService.findOrganizationByCode(code);
-    }
-
-    @PutMapping("/{code}")
-    public void updateOrganizationByCode(@PathVariable String code, @RequestBody UpdateOrganizationDto updateOrganizationDto) {
-        organizationService.updateOrganizationByCode(code, updateOrganizationDto);
-    }
-
-    @DeleteMapping("/{code}")
-    public void deleteOrganizationByCode(@PathVariable String code) {
-        organizationService.deleteOrganizationByCode(code);
-    }
+//    private final OrganizationService organizationService;
+//
+//    @GetMapping
+//    public List<OrganizationDto> getAllOrganizations() {
+//        return organizationService.findAllOrganization();
+//    }
+//
+//    @PostMapping
+//    public void addNewOrganization(@RequestBody @Valid AddNewOrganizationDto addNewOrganizationDto) {
+//        organizationService.addNewOrganization(addNewOrganizationDto);
+//    }
+//
+//    @GetMapping("/{code}")
+//    public OrganizationDto getOrganizationByCode(@PathVariable String code) {
+//        return organizationService.findOrganizationByCode(code);
+//    }
+//
+//    @PutMapping("/{code}")
+//    public void updateOrganizationByCode(@PathVariable String code, @RequestBody UpdateOrganizationDto updateOrganizationDto) {
+//        organizationService.updateOrganizationByCode(code, updateOrganizationDto);
+//    }
+//
+//    @DeleteMapping("/{code}")
+//    public void deleteOrganizationByCode(@PathVariable String code) {
+//        organizationService.deleteOrganizationByCode(code);
+//    }
 }

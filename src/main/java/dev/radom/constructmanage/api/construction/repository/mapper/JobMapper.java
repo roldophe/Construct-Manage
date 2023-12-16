@@ -1,4 +1,4 @@
-package dev.radom.constructmanage.api.construction.mapper;
+package dev.radom.constructmanage.api.construction.repository.mapper;
 
 import dev.radom.constructmanage.api.construction.model.Job;
 import dev.radom.constructmanage.api.construction.web.dto.AddNewJobDto;
@@ -13,9 +13,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface JobMapper {
-    Job fromCreateJobDto(AddNewJobDto addNewJobDto);
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void fromUpdateJobDto(@MappingTarget Job job, UpdateJobDto updateJobDto);
-    JobDto toJobDto(Job job);
-    List<JobDto> toJobDto(List<Job> jobs);
+//    Job fromCreateJobDto(AddNewJobDto addNewJobDto);
+//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+//    void fromUpdateJobDto(@MappingTarget Job job, UpdateJobDto updateJobDto);
+//    JobDto toJobDto(Job job);
+//    List<JobDto> toJobDto(List<Job> jobs);
 }

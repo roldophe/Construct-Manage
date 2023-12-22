@@ -3,6 +3,8 @@ package dev.radom.constructmanage.api.construction.project.model;
 import dev.radom.constructmanage.api.construction.assignment.model.Assignment;
 import dev.radom.constructmanage.api.construction.client.model.Client;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "projects")
+@Builder
+@AllArgsConstructor
 public class Project {
     @Id
     private String code;

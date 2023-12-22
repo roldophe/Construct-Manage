@@ -1,64 +1,75 @@
 package dev.radom.constructmanage.api.construction.employee.service;
 
-import dev.radom.constructmanage.api.construction.employee.dto.AddBankAccountDetailsDto;
-import dev.radom.constructmanage.api.construction.employee.dto.AddEmployeeDto;
-import dev.radom.constructmanage.api.construction.employee.repository.mapper.BankAccountDetailsMapper;
-import dev.radom.constructmanage.api.construction.employee.repository.mapper.EmployeeDetailsMapper;
-import dev.radom.constructmanage.api.construction.employee.repository.mapper.EmployeeMapper;
-import dev.radom.constructmanage.api.construction.employee.model.BankAccountDetails;
-import dev.radom.constructmanage.api.construction.employee.model.Employee;
-import dev.radom.constructmanage.api.construction.employee.model.EmployeeDetails;
-import dev.radom.constructmanage.api.construction.employee.model.EmployeeDto;
-import dev.radom.constructmanage.api.construction.employee.repository.BankAccountDetailsRepository;
-import dev.radom.constructmanage.api.construction.employee.repository.EmployeeDetailsRepository;
+import dev.radom.constructmanage.api.construction.employee.model.EmployeeDetailsDto;
+import dev.radom.constructmanage.api.construction.employee.repository.EmployeeMapper;
 import dev.radom.constructmanage.api.construction.employee.repository.EmployeeRepository;
-import dev.radom.constructmanage.utils.GenerateCode;
+import dev.radom.constructmanage.api.construction.employee.model.Employee;
+import dev.radom.constructmanage.api.construction.employee.dto.AddNewEmployeeDto;
+import dev.radom.constructmanage.api.construction.employee.model.EmployeeDto;
+import dev.radom.constructmanage.api.construction.employee.dto.UpdateEmployeeDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
-    private final EmployeeDetailsRepository employeeDetailsRepository;
-    private final BankAccountDetailsRepository bankAccountDetailsRepository;
-
     private final EmployeeMapper employeeMapper;
-    private final EmployeeDetailsMapper employeeDetailsMapper;
-    private final BankAccountDetailsMapper bankAccountDetailsMapper;
+
 
     @Override
-    @Transactional
-    public void addEmployee(AddEmployeeDto addEmployeeDto) {
-        Employee employee = employeeMapper.toEntity(addEmployeeDto);
-        EmployeeDetails employeeDetails = employeeDetailsMapper.toEntity(addEmployeeDto.employeeDetails());
-        Set<AddBankAccountDetailsDto> bankAccountDetailsDtos = addEmployeeDto.employeeDetails().bankAccountDetails();
-        Set<BankAccountDetails> bankAccountDetails = bankAccountDetailsMapper.toEntitySet(bankAccountDetailsDtos);
-        employee.setEmployeeId("EMP-" + GenerateCode.generateCode());
-        employeeDetails.setEmployee(employee);
-        // Assign EmployeeDetails to BankAccountDetails
-        for (BankAccountDetails account : bankAccountDetails) {
-            account.setEmployeeDetails(employeeDetails);
-        }
-        employeeRepository.save(employee);
-        employeeDetailsRepository.save(employeeDetails);
-        bankAccountDetailsRepository.saveAll(bankAccountDetails);
+    public void insertEmployee(AddNewEmployeeDto addNewEmployeeDto) {
+        //log.info("Employee: {}",addEmployeeDto);
+        Boolean existsEmployee = employeeRepository.existsByEmailAndFirstNameAndLastName(addNewEmployeeDto.email(), addNewEmployeeDto.firstName(), addNewEmployeeDto.lastName());
+        Boolean existsEmployeeByEmail = employeeRepository.existsEmployeesByEmail(addNewEmployeeDto.email());
+        if (existsEmployee) throw new ResponseStatusException(HttpStatus.CONFLICT, "Employee already exist!!");
+        if (existsEmployeeByEmail) throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exist!!");
 
-//        @Override
-//        @Transactional
-//        public void addEmployee(AddEmployeeDto addEmployeeDto) {
-//            Employee employee = employeeMapper.toEntity(addEmployeeDto);
-//            employee.setEmployeeId("EMP-" + GenerateCode.generateCode());
-//            employeeRepository.save(employee);
-//        }
+        Employee employee = employeeMapper.fromAddEmployeeDto(addNewEmployeeDto);
+        employee.setHireDate(LocalDate.now());
+        employee.setUuid(UUID.randomUUID().toString());
+
+        employeeRepository.save(employee);
     }
 
     @Override
-    public List<EmployeeDto> getEmployees() {
+    public void updateEmployeeByUuid(String uuid, UpdateEmployeeDto updateEmployeeDto) {
+        Employee employee = employeeRepository.findByUuid(uuid)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee dost not exist!!"));
+        employeeMapper.fromUpdateEmployEDto(employee, updateEmployeeDto);
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public List<EmployeeDto> getAllEmployees() {
         return employeeMapper.toEmployeeDtoList(employeeRepository.findAll());
+    }
+
+
+    @Override
+    public EmployeeDto getEmployeeByUuid(String uuid) {
+        Employee employee = employeeRepository.findByUuid(uuid)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee dost not exist!!"));
+        return employeeMapper.toEmployeeDto(employee);
+    }
+
+    @Override
+    public void deleteEmployeeByUuid(String uuid) {
+        Employee employee = employeeRepository.findByUuid(uuid)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee dost not exist!!"));
+        employeeRepository.delete(employee);
+    }
+
+    @Override
+    public List<EmployeeDetailsDto> getAllEmployeeDetails() {
+        return employeeMapper.toEmployeeDetailsDtoList(employeeRepository.findAll());
     }
 }

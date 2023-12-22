@@ -1,12 +1,15 @@
 package dev.radom.constructmanage.api.construction.employee.model;
 
+import dev.radom.constructmanage.api.construction.assignment.model.Assignment;
+import dev.radom.constructmanage.api.construction.job.model.Job;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-@Setter
+import java.util.List;
+
+@Data
 @NoArgsConstructor
 @Entity
 @Table(name = "employees")
@@ -15,19 +18,31 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String employeeId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    private LocalDate dateOfBirth;
-    private String gender;
-    private String position;
-    private String employmentStatus;
-    private BigDecimal salary;
-    private LocalDate dateOfHire;
-    private String avatar;
-    @OneToOne(mappedBy = "employee",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private EmployeeDetails employeeDetails;
+    @Column(nullable = false, unique = true)
+    private String uuid;
 
+    @Column(nullable = false, length = 25)
+    private String firstName;
+    @Column(nullable = false, length = 25)
+    private String lastName;
+
+    private LocalDate dateOfBirth;
+
+    private LocalDate hireDate;
+
+    @Column(nullable = false, length = 15)
+    private String contact;
+
+    @Column(nullable = false, unique = true, length = 80)
+    private String email;
+
+    @Column(nullable = false, length = 100)
+    private String address;
+
+    @ManyToOne
+    @JoinColumn(name = "job_code")
+    private Job job;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Assignment> assignments;
 }

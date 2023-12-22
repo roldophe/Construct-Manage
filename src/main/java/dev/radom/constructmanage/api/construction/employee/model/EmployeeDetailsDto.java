@@ -1,12 +1,17 @@
 package dev.radom.constructmanage.api.construction.employee.model;
 
-public record EmployeeDetailsDto(String address,
-                                 String emergencyContact,
-                                 String qualifications,
-                                 Integer experience,
-                                 String certifications,
-                                 String languageSpoken,
-                                 String performanceReviews,
-                                 String trainingHistory,
-                                 String leaveRecords) {
+import dev.radom.constructmanage.api.construction.job.model.Job;
+
+import java.time.LocalDate;
+
+public record EmployeeDetailsDto(String uuid,
+                                 String firstName,
+                                 String lastName,
+                                 LocalDate dateOfBirth,
+                                 LocalDate hireDate,
+                                 String contact,
+                                 String email,
+                                 String address,
+                                 String jobDescription,
+                                 Float chargeHour) {
 }

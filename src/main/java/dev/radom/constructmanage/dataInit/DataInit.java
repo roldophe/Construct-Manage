@@ -1,10 +1,5 @@
 package dev.radom.constructmanage.dataInit;
 
-import dev.radom.constructmanage.api.construction.repository.JobRepository;
-import dev.radom.constructmanage.api.construction.repository.ProjectRepository;
-import dev.radom.constructmanage.api.construction.model.Job;
-import dev.radom.constructmanage.api.construction.model.Project;
-import dev.radom.constructmanage.utils.GenerateCode;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

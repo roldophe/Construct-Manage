@@ -29,7 +29,7 @@ public class DataInit {
 
     @PostConstruct
     private void init() {
-//         Create and save Job entities
+////         Create and save Job entities
         createAndSaveJob("Programmer", 35.75F);
         createAndSaveJob("Systems Analyst", 96.75F);
         createAndSaveJob("Database Designer", 105F);
@@ -42,13 +42,13 @@ public class DataInit {
         createAndSaveJob("Bio Technician", 34.55F);
         createAndSaveJob("General Support", 18.36F);
 
-        // Create and save Project entities
+        //// Create and save Project entities
 
         createAndSaveProject("Evergreen", new BigDecimal("5700.0"));
         createAndSaveProject("Amber Wave", new BigDecimal("4500.0"));
         createAndSaveProject("Rolling Tide", new BigDecimal("6800.0"));
         createAndSaveProject("Star flight", new BigDecimal("3500.0"));
-        //-------------------FOR USERS---------------------//
+        ////-------------------FOR USERS---------------------////
 
 
         Authority readAssignment = createAuthority("assignment:read");
@@ -88,7 +88,7 @@ public class DataInit {
         );
 
         authorityRepository.saveAll(authorityEmployees);
-        // Create and save Authority entities
+        //// Create and save Authority entities
         Authority readJob = createAuthority("job:read");
         Authority writeJob = createAuthority("job:write");
         Authority updateJob = createAuthority("job:update");

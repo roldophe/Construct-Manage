@@ -1,4 +1,4 @@
-package dev.radom.constructmanage.file.web;
+package dev.radom.constructmanage.api.file.web;
 
 import lombok.Builder;
 

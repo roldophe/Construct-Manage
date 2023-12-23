@@ -1,6 +1,6 @@
-package dev.radom.constructmanage.file;
+package dev.radom.constructmanage.api.file;
 
-import dev.radom.constructmanage.file.web.FileDto;
+import dev.radom.constructmanage.api.file.web.FileDto;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 

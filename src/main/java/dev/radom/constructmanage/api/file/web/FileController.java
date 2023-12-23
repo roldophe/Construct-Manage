@@ -1,7 +1,7 @@
-package dev.radom.constructmanage.file.web;
+package dev.radom.constructmanage.api.file.web;
 
 
-import dev.radom.constructmanage.file.FileService;
+import dev.radom.constructmanage.api.file.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;

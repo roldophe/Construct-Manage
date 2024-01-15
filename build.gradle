@@ -43,6 +43,12 @@ dependencies {
     //Thymeleaf template engine
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
+    //Spring security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    //Oauth2-resource-server
+
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 }
 
 tasks.named('bootBuildImage') {
